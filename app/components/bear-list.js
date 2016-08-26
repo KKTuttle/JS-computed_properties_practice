@@ -1,6 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  model: Ember.computed({
+    set: function(key, bears) {
+      return bears.map(function(bear) {
+        bear.favorited =false;
+        return Ember.Object.create(bear);
+      });
+    }
+  }),
   totalBears: Ember.computed('model.[]', function() {
     return this.get('model.length');
   }),
@@ -12,6 +20,9 @@ export default Ember.Component.extend({
   actions: {
     showMore: function() {
       this.incrementProperty('page', 5);
+    },
+    favorited: function(bear) {
+      bear.toggleProperty('favorited');
     }
   }
 
