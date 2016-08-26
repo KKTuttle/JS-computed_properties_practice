@@ -17,6 +17,13 @@ export default Ember.Component.extend({
     return this.get('model.[]', 'page').slice(page, page + 5);
   }),
   page: 0,
+  favoritedBears: Ember.computed('model.@each.favorited', {
+    get: function() {
+      return this.get('model').filterBy('favorited', true).length;
+    },
+  }),
+
+
   actions: {
     showMore: function() {
       this.incrementProperty('page', 5);
