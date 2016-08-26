@@ -1,0 +1,7 @@
+<h3>Bears ({{totalBears}})</h3>
+<ul>
+  {{#each bears as |bear|}}
+    <li>{{bear.name}}</li>
+  {{/each}}
+</ul>
+<button {{action 'showMore'}}>Show More</button>
